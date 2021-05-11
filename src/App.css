@@ -1,16 +1,28 @@
-.App {
-  text-align: center;
-}
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.wrapper {
+  height: 100%;
+
 }
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
   }
+}
+.startGame {
+  position: absolute;
+  z-index: 111;
+  top: 50px;
+  left: calc(50% - 100px);
+  width: 200px;
+}
+.mask {
+  height: 100%;
+  width: 100%;
+  background-color: black;
+  opacity: 0.2;
+  position: absolute;
+  z-index: 1;
 }
 
 .App-header {
