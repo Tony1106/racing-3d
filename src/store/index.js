@@ -1,12 +1,11 @@
 import create from "zustand";
-
 export default create((set) => ({
   isPlaying: false,
   startGame: () => set((state) => ({ isPlaying: true })),
   isJump: false,
   setJump: (value) =>
-    set((state) => {return { isJump: value };
-
+    set((state) => {
+      return { isJump: value };
     }),
   roadSize: 20,
   modelWidth: 2,
@@ -18,23 +17,23 @@ export default create((set) => ({
   barriers: [],
   setBarriers: (barriers) => set((state) => ({ barriers })),
   playerState: null,
-  updatePlayerState: (playerState) => set(state=>({playerState})),
-  updatePlayerPosition: (direction) =>
+  updatePlayerState: (playerState) => set((state) => ({ playerState })),
+  updatePlayerPosition: ({x,y,z}) =>
     set((state) => {
-      let { x, y, z } = state.playerPosition;
-      const { roadSize, modelWidth } = state;
-      const DIRECTION = {
-        left: () => {
-          if (!(x < -(roadSize / 2 - modelWidth))) x -= 0.1;
-        },
-        right: () => {
-          if (!(x > roadSize / 2 - modelWidth)) x += 0.1;
-        },
-        forward: () => (z -= 0.1),
-        backward: () => (z += 0.1),
-      };
-      const fn = DIRECTION[direction];
-      if (fn) fn();
-      return { playerPosition: { x, y, z } };
-    }),
+      const currentPosition = state.playerPosition;
+      const _x = currentPosition.x;
+      const _y = currentPosition.y;
+      const _z = currentPosition.z;
+      const SHOULD_UPDATE_RANGE = 0.001
+      if(x - _x <SHOULD_UPDATE_RANGE && y - _y < SHOULD_UPDATE_RANGE && z -_z < SHOULD_UPDATE_RANGE) {
+        // console.log('not update');
+        return {playerPosition: {currentPosition}};
+      }
+      return {
+      playerPosition: {
+        x: x,
+        y: y,
+        z: z,
+      },
+    }}),
 }));

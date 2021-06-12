@@ -1,4 +1,4 @@
-import { useGLTF, PerspectiveCamera } from '@react-three/drei'
+import { useGLTF } from '@react-three/drei'
 import beetlePath from '../assets/Beetle.glb'
 
 export default function Beetle(props) {

@@ -22,8 +22,6 @@ function useKeyPress(target) {
 }
 
 export default React.memo((props)=> {
-    const roadSize = useStore((state) => state.roadSize);
-    const modelWidth = useStore((state) => state.modelWidth);
     const setJump = useStore((state) => state.setJump);
     const updatePlayerState = useStore((state) => state.updatePlayerState);
     const jump = useKeyPress(" ");
